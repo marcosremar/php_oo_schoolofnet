@@ -1,34 +1,21 @@
 <?php
+namespace Source;
 
-// require_once('IConn.php');
-// require_once('Conn.php');
-// require_once('Product.php');
-// require_once('Container.php');
+class Product
+{
+	private $db;
 
-require_once('../vendor/autoload.php');
+	public function __construct($db)
+	{
+		$this->db = $db;
+	}
 
-// $db = Container::getConn();
+	public function list()
+	{
+		$query "select * from products";
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-// $product = Container::getProduct();
-
-// $list = $product->list();
-
-// var_dump($list);
-
-use Pimple\Container;
-
-$container = new Container();
-
-$container['date'] = function(){
-	return new \DateTime;
-};
-
-var_dump($container['date']);
-
-$container['date2'] = $container->factory(function(){
-	return new \DateTime;
-});
-
-echo '<br>';
-//$date = new \Date
-var_dump($container['date']);
+	}
+}
