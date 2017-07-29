@@ -1,21 +1,12 @@
 <?php
-namespace Source;
 
-class Product
-{
-	private $db;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-	public function __construct($db)
-	{
-		$this->db = $db;
-	}
+require_once('../vendor/autoload.php');
+require_once('config.php');
+require_once('service.php');
 
-	public function list()
-	{
-		$query "select * from products";
-		$stmt = $db->prepare($query);
-		$stmt->execute();
-		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+$list = $container['ServiceProduct']->list();
 
-	}
-}
+var_dump($list);
